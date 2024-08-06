@@ -4,3 +4,7 @@
   padding: 2rem;
   text-align: left;
 }
+
+.todo-wrap {
+  max-width: 800px;
+}
