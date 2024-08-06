@@ -4,7 +4,7 @@ import { useTodos } from "../store/useTodos";
 
 const List = () => {
   const todoData = useTodos((state) => state.todos);
-  console.log(todoData);
+
   return (
     <Card>
       <ul>

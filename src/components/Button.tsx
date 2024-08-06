@@ -3,11 +3,16 @@ import styles from "./Button.module.css";
 
 type ButtonProps = PropsChild & {
   className: string;
+  onClick?: () => void;
 };
 
-const Button = ({ children, className }: ButtonProps) => {
+const Button = ({ children, className, onClick }: ButtonProps) => {
   const classes = styles.btn + " " + styles[className];
-  return <button className={classes}>{children}</button>;
+  return (
+    <button onClick={onClick} className={classes}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;
