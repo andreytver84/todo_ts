@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import { useTodos } from "../store/useTodos";
 import styles from "./SimpleDialog.module.css";
 import clsx from "clsx";
+import { format } from "date-fns";
 
 const validationSchema = Yup.object({
   task: Yup.string()
@@ -16,6 +17,8 @@ const validationSchema = Yup.object({
 });
 
 const SimpleDialog = (props: SimpleDialogProps) => {
+  const date = format(new Date(), "dd/MM HH:mm");
+
   const { onClose, open } = props;
 
   const addTodo = useTodos((state) => state.addTodo);
@@ -33,7 +36,7 @@ const SimpleDialog = (props: SimpleDialogProps) => {
           initialValues={{ task: "", quickly: false }}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-            addTodo(values.task, values.quickly);
+            addTodo(values.task, values.quickly, date);
             handleClose();
             setSubmitting(true);
             setTimeout(() => {

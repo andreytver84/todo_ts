@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { IStoreTheme } from "../components/interfaces_types";
 
 export const useColorTheme = create<IStoreTheme>()(
@@ -22,7 +22,7 @@ export const useColorTheme = create<IStoreTheme>()(
     }),
     {
       name: "theme-storage",
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

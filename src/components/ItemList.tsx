@@ -8,7 +8,11 @@ const ItemList = (props: PropsItem) => {
   return (
     <div className={styles.item}>
       {props.quickly && <span className={styles.label}>quickly</span>}
-      <p>{props.title}</p>
+      <div className={styles.task}>
+        <h4>{props.title}</h4>
+        <span className={styles.date}>{props.date}</span>
+      </div>
+
       <span className={styles.btnRemove} onClick={() => removeTodo(props.id)}>
         X
       </span>

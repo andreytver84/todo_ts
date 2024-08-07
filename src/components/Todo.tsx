@@ -1,10 +1,11 @@
 import Bar from "./Bar";
+import Header from "./Header";
 import List from "./List";
 
 const Todo = () => {
   return (
     <div className="todo-wrap">
-      <h1>ToDo List</h1>
+      <Header />
       <Bar />
       <List />
     </div>
