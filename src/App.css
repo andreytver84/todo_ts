@@ -1,6 +1,22 @@
 #root {
+  padding: 0;
+  text-align: left;
+  margin: 0;
+}
+
+.todo-wrap {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: left;
+  max-width: 800px;
+  min-height: 100vh;
+}
+
+.light {
+  background-color: #fff;
+}
+
+.dark {
+  background-color: #000;
+  color: #fff;
 }
