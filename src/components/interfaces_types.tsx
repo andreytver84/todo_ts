@@ -16,3 +16,9 @@ export interface IStore {
   todos: ITodoItem[];
   addTodo: (title: string) => void;
 }
+
+export interface SimpleDialogProps {
+  open: boolean;
+
+  onClose: () => void;
+}
