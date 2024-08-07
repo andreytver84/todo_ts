@@ -1,19 +1,20 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { IStore, ITodoItem } from "../components/interfaces_types";
+import { nanoid } from "nanoid";
 
 export const useTodos = create<IStore>()(
   persist(
     (set): IStore => ({
       todos: [
-        { id: 1, title: "first todo", competed: false },
-        { id: 2, title: "second todo", competed: true },
-        { id: 3, title: "third todo", competed: false },
+        { id: "1", title: "first todo", competed: false },
+        { id: "2", title: "second todo", competed: true },
+        { id: "3", title: "third todo", competed: false },
       ],
       addTodo: (title: string) =>
         set((state) => {
           const newTodo: ITodoItem = {
-            id: Math.floor(Math.random() * 1000000),
+            id: nanoid(),
             title,
             competed: false,
           };
