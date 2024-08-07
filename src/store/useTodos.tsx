@@ -20,6 +20,12 @@ export const useTodos = create<IStore>()(
           };
           return { todos: [...state.todos, newTodo] };
         }),
+      removeTodo: (id: string) =>
+        set((state) => {
+          const newTodos = state.todos.filter((item) => item.id !== id);
+          console.log(newTodos);
+          return { todos: newTodos };
+        }),
     }),
     {
       name: "todo-storage",

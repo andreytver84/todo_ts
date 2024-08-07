@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import Card from "./Card";
 import { Button } from "@mui/material";
 import { useTodos } from "../store/useTodos";
+import styles from "./SimpleDialog.module.css";
 
 const validationSchema = Yup.object({
   task: Yup.string()
@@ -25,6 +26,7 @@ const SimpleDialog = (props: SimpleDialogProps) => {
   return (
     <Dialog onClose={handleClose} open={open}>
       <Card>
+        <h4>Add new task to list</h4>
         <Formik
           validationSchema={validationSchema}
           initialValues={{ task: "" }}
@@ -38,8 +40,8 @@ const SimpleDialog = (props: SimpleDialogProps) => {
           }}
         >
           {({ isSubmitting }) => (
-            <Form>
-              <Field type="text" name="task" />
+            <Form className={styles.form}>
+              <Field type="text" name="task" placeholder="your task here..." />
               <ErrorMessage name="task" component="div" />
               <Button type="submit" disabled={isSubmitting} variant="outlined">
                 Add

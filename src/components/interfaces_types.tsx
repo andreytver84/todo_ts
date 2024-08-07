@@ -4,6 +4,7 @@ export type PropsChild = {
 
 export type PropsItem = {
   title?: string;
+  id: string;
 };
 
 export interface ITodoItem {
@@ -15,6 +16,7 @@ export interface ITodoItem {
 export interface IStore {
   todos: ITodoItem[];
   addTodo: (title: string) => void;
+  removeTodo: (id: string) => void;
 }
 
 export interface SimpleDialogProps {
