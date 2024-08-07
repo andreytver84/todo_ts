@@ -5,10 +5,10 @@ import styles from "./List.module.css";
 
 const List = () => {
   const onlyQuicklyTasks = useTodos((state) => state.onlyQuicklyTasks);
-  const getTodos = useTodos((state) => state.todos);
+  const tasks = useTodos((state) => state.todos); // change name
   const todoData = onlyQuicklyTasks
-    ? getTodos.filter((item) => item.quickly)
-    : getTodos;
+    ? tasks.filter((item) => item.quickly)
+    : tasks;
 
   return (
     <Card>
