@@ -16,9 +16,17 @@ export interface ITodoItem {
 }
 
 export interface IStore {
+  onlyQuicklyTasks: boolean;
   todos: ITodoItem[];
   addTodo: (title: string, quickly: boolean) => void;
   removeTodo: (id: string) => void;
+  hideNotQuickly: () => void;
+}
+
+export interface IStoreTheme {
+  theme: string;
+  onToggleTheme: () => void;
+  setTheme: (theme: string) => void;
 }
 
 export interface SimpleDialogProps {

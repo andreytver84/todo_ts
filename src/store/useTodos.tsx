@@ -6,11 +6,13 @@ import { nanoid } from "nanoid";
 export const useTodos = create<IStore>()(
   persist(
     (set): IStore => ({
+      onlyQuicklyTasks: false,
       todos: [
         { id: "1", title: "first todo", competed: false, quickly: true },
         { id: "2", title: "second todo", competed: true, quickly: false },
         { id: "3", title: "third todo", competed: false, quickly: true },
       ],
+
       addTodo: (title: string, quickly: boolean) =>
         set((state) => {
           const newTodo: ITodoItem = {
@@ -26,6 +28,11 @@ export const useTodos = create<IStore>()(
           const newTodos = state.todos.filter((item) => item.id !== id);
           console.log(newTodos);
           return { todos: newTodos };
+        }),
+      hideNotQuickly: () =>
+        set((state) => {
+          console.log(state.onlyQuicklyTasks);
+          return { onlyQuicklyTasks: !state.onlyQuicklyTasks };
         }),
     }),
     {

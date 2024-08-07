@@ -4,7 +4,11 @@ import { useTodos } from "../store/useTodos";
 import styles from "./List.module.css";
 
 const List = () => {
-  const todoData = useTodos((state) => state.todos);
+  const onlyQuicklyTasks = useTodos((state) => state.onlyQuicklyTasks);
+  const getTodos = useTodos((state) => state.todos);
+  const todoData = onlyQuicklyTasks
+    ? getTodos.filter((item) => item.quickly)
+    : getTodos;
 
   return (
     <Card>

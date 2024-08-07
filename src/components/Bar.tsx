@@ -5,9 +5,14 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import SimpleDialog from "./SimpleDialog";
 import { useState } from "react";
+import { useTodos } from "../store/useTodos";
+import { useColorTheme } from "../store/useColorTheme";
 
 const Bar = () => {
   const [open, setOpen] = useState(false);
+
+  const hideNotQuickly = useTodos((state) => state.hideNotQuickly);
+  const onToggleTheme = useColorTheme((state) => state.onToggleTheme);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -15,6 +20,11 @@ const Bar = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const quicklyTaskHandler = () => {
+    //console.log("11");
+    hideNotQuickly();
   };
 
   return (
@@ -27,7 +37,12 @@ const Bar = () => {
         >
           Add task
         </Button>
-        <Button variant="outlined">Hide tasks</Button>
+        <Button variant="outlined" onClick={quicklyTaskHandler}>
+          Toggle quickly tasks
+        </Button>
+        <Button variant="outlined" onClick={() => onToggleTheme()}>
+          Change Theme
+        </Button>
       </div>
       <SimpleDialog open={open} onClose={handleClose} />
     </Card>
