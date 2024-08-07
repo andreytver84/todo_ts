@@ -47,6 +47,16 @@ export const useTodos = create<IStore>()(
           const newTodos = state.todos.filter((item) => item.id !== id);
           return { todos: newTodos };
         }),
+      compliteTodo: (id: string) =>
+        set((state) => {
+          const newTodos = state.todos.map((item) => {
+            if (item.id === id) {
+              return { ...item, competed: !item.competed };
+            }
+            return item;
+          });
+          return { todos: newTodos };
+        }),
       hideNotQuickly: () =>
         set((state) => {
           return { onlyQuicklyTasks: !state.onlyQuicklyTasks };

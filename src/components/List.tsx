@@ -20,6 +20,7 @@ const List = () => {
               id={item.id}
               quickly={item.quickly}
               date={item.date}
+              complite={item.competed}
             />
           </li>
         ))}

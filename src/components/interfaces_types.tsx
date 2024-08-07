@@ -7,6 +7,7 @@ export type PropsItem = {
   id: string;
   quickly: boolean;
   date: string;
+  complite: boolean;
 };
 
 export interface ITodoItem {
@@ -21,6 +22,7 @@ export interface IStore {
   onlyQuicklyTasks: boolean;
   todos: ITodoItem[];
   addTodo: (title: string, quickly: boolean, date: string) => void;
+  compliteTodo: (id: string) => void;
   removeTodo: (id: string) => void;
   hideNotQuickly: () => void;
 }

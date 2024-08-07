@@ -1,16 +1,5 @@
-.btnRemove {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
-}
-
-.item {
+.item,
+.itemComplete {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +9,10 @@
   background: #f0f0f0;
   padding: 10px 20px 10px 40px;
   position: relative;
+}
+
+.itemComplete {
+  opacity: 0.4;
 }
 
 .task {
@@ -43,4 +36,32 @@
   top: 5px;
   left: -15px;
   font-size: 10px;
+}
+
+.btnWraper {
+  display: flex;
+  gap: 10px;
+}
+.btnRemove,
+.btnComplite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+.btnComplite {
+  color: rgba(0, 0, 0, 0);
+}
+.itemComplete .btnComplite {
+  color: rgba(0, 0, 0, 1);
+}
+
+.itemComplete h4 {
+  text-decoration: line-through;
 }
