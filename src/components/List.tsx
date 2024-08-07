@@ -11,7 +11,7 @@ const List = () => {
       <ul className={styles.list}>
         {todoData.map((item) => (
           <li key={item.id}>
-            <ItemList title={item.title} id={item.id} />
+            <ItemList title={item.title} id={item.id} quickly={item.quickly} />
           </li>
         ))}
       </ul>

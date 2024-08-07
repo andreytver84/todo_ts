@@ -5,17 +5,19 @@ export type PropsChild = {
 export type PropsItem = {
   title?: string;
   id: string;
+  quickly: boolean;
 };
 
 export interface ITodoItem {
   id: string;
   title: string;
   competed: boolean;
+  quickly: boolean;
 }
 
 export interface IStore {
   todos: ITodoItem[];
-  addTodo: (title: string) => void;
+  addTodo: (title: string, quickly: boolean) => void;
   removeTodo: (id: string) => void;
 }
 

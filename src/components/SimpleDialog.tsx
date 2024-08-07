@@ -6,6 +6,7 @@ import Card from "./Card";
 import { Button } from "@mui/material";
 import { useTodos } from "../store/useTodos";
 import styles from "./SimpleDialog.module.css";
+import clsx from "clsx";
 
 const validationSchema = Yup.object({
   task: Yup.string()
@@ -29,19 +30,32 @@ const SimpleDialog = (props: SimpleDialogProps) => {
         <h4>Add new task to list</h4>
         <Formik
           validationSchema={validationSchema}
-          initialValues={{ task: "" }}
+          initialValues={{ task: "", quickly: false }}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values.task);
-            addTodo(values.task);
+            console.log(values);
+            addTodo(values.task, values.quickly);
             handleClose();
+            setSubmitting(true);
             setTimeout(() => {
               setSubmitting(false);
             }, 400);
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, errors, touched }) => (
             <Form className={styles.form}>
-              <Field type="text" name="task" placeholder="your task here..." />
+              <label>
+                <span>Task is quickly: </span>
+                <Field type="checkbox" name="quickly" />
+              </label>
+
+              <Field
+                className={clsx(
+                  errors.task && touched.task ? styles.error : ""
+                )}
+                type="text"
+                name="task"
+                placeholder="your task here..."
+              />
               <ErrorMessage name="task" component="div" />
               <Button type="submit" disabled={isSubmitting} variant="outlined">
                 Add

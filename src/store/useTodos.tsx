@@ -7,16 +7,17 @@ export const useTodos = create<IStore>()(
   persist(
     (set): IStore => ({
       todos: [
-        { id: "1", title: "first todo", competed: false },
-        { id: "2", title: "second todo", competed: true },
-        { id: "3", title: "third todo", competed: false },
+        { id: "1", title: "first todo", competed: false, quickly: true },
+        { id: "2", title: "second todo", competed: true, quickly: false },
+        { id: "3", title: "third todo", competed: false, quickly: true },
       ],
-      addTodo: (title: string) =>
+      addTodo: (title: string, quickly: boolean) =>
         set((state) => {
           const newTodo: ITodoItem = {
             id: nanoid(),
             title,
             competed: false,
+            quickly,
           };
           return { todos: [...state.todos, newTodo] };
         }),
