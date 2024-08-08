@@ -15,8 +15,13 @@
   opacity: 0.4;
 }
 
+.task {
+  min-width: 50%;
+}
+
 .task h4 {
   margin: 0;
+  text-align: left;
 }
 
 .date {
