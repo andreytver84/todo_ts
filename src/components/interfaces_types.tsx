@@ -16,15 +16,23 @@ export interface ITodoItem {
   competed: boolean;
   quickly: boolean;
   date: string;
+  body: string;
 }
 
 export interface IStore {
   onlyQuicklyTasks: boolean;
   todos: ITodoItem[];
-  addTodo: (title: string, quickly: boolean, date: string) => void;
+  addTodo: (
+    title: string,
+    quickly: boolean,
+    date: string,
+    body: string
+  ) => void;
   compliteTodo: (id: string) => void;
   removeTodo: (id: string) => void;
   hideNotQuickly: () => void;
+  todayTaskToggle: (val: boolean) => ITodoItem[];
+  getTask: (id: string) => ITodoItem;
 }
 
 export interface IStoreTheme {

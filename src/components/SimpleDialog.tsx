@@ -33,10 +33,10 @@ const SimpleDialog = (props: SimpleDialogProps) => {
         <h4>Add new task to list</h4>
         <Formik
           validationSchema={validationSchema}
-          initialValues={{ task: "", quickly: false }}
+          initialValues={{ task: "", quickly: false, detail: "" }}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-            addTodo(values.task, values.quickly, date);
+            addTodo(values.task, values.quickly, date, values.detail);
             handleClose();
             setSubmitting(true);
             setTimeout(() => {
@@ -60,6 +60,15 @@ const SimpleDialog = (props: SimpleDialogProps) => {
                 placeholder="your task here..."
               />
               <ErrorMessage name="task" component="div" />
+              <Field
+                className={clsx(
+                  errors.task && touched.task ? styles.error : ""
+                )}
+                type="text"
+                name="detail"
+                placeholder="Detail your task here..."
+              />
+              <ErrorMessage name="detail" component="div" />
               <Button type="submit" disabled={isSubmitting} variant="outlined">
                 Add
               </Button>

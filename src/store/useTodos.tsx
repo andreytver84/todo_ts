@@ -2,10 +2,11 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { IStore, ITodoItem } from "../components/interfaces_types";
 import { nanoid } from "nanoid";
+import { format } from "date-fns";
 
 export const useTodos = create<IStore>()(
   persist(
-    (set): IStore => ({
+    (set, get): IStore => ({
       onlyQuicklyTasks: false,
       todos: [
         {
@@ -14,6 +15,7 @@ export const useTodos = create<IStore>()(
           competed: false,
           quickly: true,
           date: "07/08 16:02",
+          body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
         },
         {
           id: "2",
@@ -21,6 +23,7 @@ export const useTodos = create<IStore>()(
           competed: true,
           quickly: false,
           date: "05/08 10:02",
+          body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
         },
         {
           id: "3",
@@ -28,10 +31,11 @@ export const useTodos = create<IStore>()(
           competed: false,
           quickly: true,
           date: "03/08 6:12",
+          body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
         },
       ],
 
-      addTodo: (title: string, quickly: boolean, date: string) =>
+      addTodo: (title: string, quickly: boolean, date: string, body: string) =>
         set((state) => {
           const newTodo: ITodoItem = {
             id: nanoid(),
@@ -39,6 +43,7 @@ export const useTodos = create<IStore>()(
             competed: false,
             quickly,
             date,
+            body,
           };
           return { todos: [...state.todos, newTodo] };
         }),
@@ -47,6 +52,7 @@ export const useTodos = create<IStore>()(
           const newTodos = state.todos.filter((item) => item.id !== id);
           return { todos: newTodos };
         }),
+
       compliteTodo: (id: string) =>
         set((state) => {
           const newTodos = state.todos.map((item) => {
@@ -57,10 +63,32 @@ export const useTodos = create<IStore>()(
           });
           return { todos: newTodos };
         }),
+      todayTaskToggle: (val) => {
+        const dateToday = format(new Date(), "dd/MM");
+        if (val) {
+          const taskExpired = get().todos.filter(
+            (task) => task.date.slice(0, 5) === dateToday
+          );
+          return taskExpired;
+        }
+
+        return get().todos;
+      },
       hideNotQuickly: () =>
         set((state) => {
           return { onlyQuicklyTasks: !state.onlyQuicklyTasks };
         }),
+      getTask: (id: string) => {
+        if (id) {
+          let findTask;
+          get().todos.forEach((task) => {
+            if (task.id === id) {
+              findTask = task;
+            }
+          });
+          return findTask;
+        }
+      },
     }),
     {
       name: "todo-storage",
