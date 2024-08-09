@@ -3,31 +3,40 @@ import ItemList from "./ItemList";
 import { useTodos } from "../store/useTodos";
 import styles from "./List.module.css";
 import { useState } from "react";
+import { Button } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import SimpleDialog from "./SimpleDialog";
 
 const List = () => {
   const onlyQuicklyTasks = useTodos((state) => state.onlyQuicklyTasks);
   const tasks = useTodos((state) => state.todos);
-  const todayTaskToggle = useTodos((state) => state.todayTaskToggle);
-  const [isClicked, setIsClicked] = useState(false);
 
-  const todayClickHandler = () => {
-    setIsClicked(!isClicked);
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const todoData = onlyQuicklyTasks
     ? tasks.filter((item) => item.quickly)
     : tasks;
 
-  const tasksData = !isClicked ? todoData : todayTaskToggle(isClicked);
-
   return (
     <Card>
-      <button onClick={todayClickHandler}>
-        {!isClicked ? "Show only today tasks" : "Show all tasks"}
-      </button>
+      <Button
+        variant="contained"
+        onClick={handleClickOpen}
+        endIcon={<SendIcon />}
+      >
+        Add task
+      </Button>
+
       <p></p>
       <ul className={styles.list}>
-        {tasksData.map((item) => (
+        {todoData.map((item) => (
           <li key={item.id}>
             <ItemList
               title={item.title}
@@ -39,6 +48,7 @@ const List = () => {
           </li>
         ))}
       </ul>
+      <SimpleDialog open={open} onClose={handleClose} />
     </Card>
   );
 };

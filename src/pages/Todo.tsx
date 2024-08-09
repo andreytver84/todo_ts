@@ -1,11 +1,11 @@
-import Bar from "../components/Bar";
+import Filter from "../components/Filter";
 
 import List from "../components/List";
 
 const Todo = () => {
   return (
     <>
-      <Bar />
+      <Filter />
       <List />
     </>
   );

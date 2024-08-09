@@ -78,16 +78,8 @@ export const useTodos = create<IStore>()(
         set((state) => {
           return { onlyQuicklyTasks: !state.onlyQuicklyTasks };
         }),
-      getTask: (id: string) => {
-        if (id) {
-          let findTask;
-          get().todos.forEach((task) => {
-            if (task.id === id) {
-              findTask = task;
-            }
-          });
-          return findTask;
-        }
+      getTask: (id: string): ITodoItem => {
+        return get().todos.find((item) => item.id === id)!;
       },
     }),
     {
