@@ -1,0 +1,23 @@
+.btn {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.default {
+  background: #ed7e7e;
+}
+.default:hover {
+  background: #ad2020;
+  color: #fff;
+}
+
+.secondary {
+  background: #b47373;
+  color: #fff;
+}
+.secondary:hover {
+  background: #777777;
+  color: #000000;
+}
