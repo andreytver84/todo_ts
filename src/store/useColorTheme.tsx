@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { IStoreTheme } from "../components/interfaces_types";
+import { IStoreTheme } from "../types/interfaces_types";
 
 export const useColorTheme = create<IStoreTheme>()(
   persist(

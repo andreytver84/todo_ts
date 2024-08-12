@@ -1,4 +1,4 @@
-import { PropsChild } from "./interfaces_types";
+import { PropsChild } from "../types/interfaces_types";
 import styles from "./Button.module.css";
 
 type ButtonProps = PropsChild & {

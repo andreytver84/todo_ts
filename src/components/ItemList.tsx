@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { useTodos } from "../store/useTodos";
-import { PropsItem } from "./interfaces_types";
+import { PropsItem } from "../types/interfaces_types";
 import styles from "./ItemList.module.css";
 import { Link } from "react-router-dom";
 

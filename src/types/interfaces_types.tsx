@@ -21,7 +21,11 @@ export interface ITodoItem {
 
 export interface IStore {
   onlyQuicklyTasks: boolean;
+  onlyThisDay: string;
   todos: ITodoItem[];
+  fetchTodos: () => void;
+  loading: boolean;
+  error: boolean;
   addTodo: (
     title: string,
     quickly: boolean,
@@ -30,8 +34,7 @@ export interface IStore {
   ) => void;
   compliteTodo: (id: string) => void;
   removeTodo: (id: string) => void;
-  hideNotQuickly: () => void;
-  todayTaskToggle: (val: boolean) => ITodoItem[];
+  quicklyToggle: (val: boolean) => void;
   getTask: (id: string) => ITodoItem;
 }
 

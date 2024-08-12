@@ -2,14 +2,17 @@ import Card from "./Card";
 import ItemList from "./ItemList";
 import { useTodos } from "../store/useTodos";
 import styles from "./List.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import SimpleDialog from "./SimpleDialog";
 
 const List = () => {
-  const onlyQuicklyTasks = useTodos((state) => state.onlyQuicklyTasks);
   const tasks = useTodos((state) => state.todos);
+  const loading = useTodos((state) => state.loading);
+  const fetchTodos = useTodos((state) => state.fetchTodos);
+  const onlyQuicklyTasks = useTodos((state) => state.onlyQuicklyTasks);
+  const onlyThisDay = useTodos((state) => state.onlyThisDay);
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -20,9 +23,22 @@ const List = () => {
     setOpen(false);
   };
 
-  const todoData = onlyQuicklyTasks
-    ? tasks.filter((item) => item.quickly)
-    : tasks;
+  const data = tasks
+    .filter((task) => {
+      const onlyDaYMonth = task.date.slice(0, 5);
+      return onlyDaYMonth === onlyThisDay;
+    })
+    .filter((task) => {
+      if (onlyQuicklyTasks) {
+        return task.quickly === onlyQuicklyTasks;
+      } else {
+        return task;
+      }
+    });
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   return (
     <Card>
@@ -35,8 +51,9 @@ const List = () => {
       </Button>
 
       <p></p>
+      {loading && `Loading...`}
       <ul className={styles.list}>
-        {todoData.map((item) => (
+        {data.map((item) => (
           <li key={item.id}>
             <ItemList
               title={item.title}

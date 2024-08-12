@@ -1,5 +1,5 @@
 import Dialog from "@mui/material/Dialog";
-import { SimpleDialogProps } from "./interfaces_types";
+import { SimpleDialogProps } from "../types/interfaces_types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Card from "./Card";
