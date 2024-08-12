@@ -1,0 +1,14 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.date {
+  color: #888;
+}
